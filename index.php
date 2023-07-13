@@ -17,7 +17,7 @@ if (isset($_POST['submit'])) {
     } elseif (empty($password)) {
         $error = "Enter your Password!";
     } else {
-        $new_password = md5($password);
+        $new_password = sha1($password);
         $sql = "SELECT * FROM `users` WHERE `email` = '$email' AND `password` = '$new_password'";
         $result = $conn->query($sql);
         $user = $result->fetch_assoc();
