@@ -32,6 +32,13 @@
                     <span class="align-middle">Registrations</span>
                 </a>
             </li>
+
+            <li class="sidebar-item">
+                <a class="sidebar-link" href="./template.php">
+                    <i class="align-middle" data-feather="book"></i>
+                    <span class="align-middle">Blank</span>
+                </a>
+            </li>
         </ul>
     </div>
 </nav>

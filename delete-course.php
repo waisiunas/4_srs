@@ -1,13 +1,16 @@
 <?php require_once('./database/connection.php'); ?>
+
 <?php
-if (isset($_GET['id']) && !empty($_GET['id'])) {
+if(isset($_GET['id']) && !empty($_GET['id'])) {
     $id = $_GET['id'];
-    $sql = "DELETE FROM `courses` WHERE `id` = $id";
-    $is_deleted = $conn->query($sql);
-    if($is_deleted){
-        header("location: ./show-courses.php");
-    }
 } else {
-    header("location: ./show-courses.php");
+    header('location: ./show-courses.php');
 }
-?>
+
+$sql = "DELETE FROM `courses` WHERE `id` = $id";
+if($conn->query($sql)) {
+    header('location: ./show-courses.php');
+} else {
+    echo "Failed to delete!";
+}
+

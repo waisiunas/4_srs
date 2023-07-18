@@ -2,22 +2,21 @@
 
 <?php
 $name = $duration = "";
-if (isset($_POST["submit"])) {
-    $name = htmlspecialchars($_POST["name"]);
-    $duration = htmlspecialchars($_POST["duration"]);
+
+if (isset($_POST['submit'])) {
+    $name = htmlspecialchars($_POST['name']);
+    $duration = htmlspecialchars($_POST['duration']);
 
     if (empty($name)) {
-        $error = "Please enter course name";
+        $error = "Enter course name!";
     } elseif (empty($duration)) {
-        $error = "Please enter course duration";
+        $error = "Enter course duration!";
     } else {
-        // $success = "Good to go";
         $sql = "INSERT INTO `courses`(`name`, `duration`) VALUES ('$name','$duration')";
-        $is_created = $conn->query($sql);
-        if($is_created){
-            $success = "Magic has been spelled";
-        } else{
-            $error = "It was never a magic but a shopper";
+        if($conn->query($sql)) {
+            $success = "Magic has been spelled!";
+        } else {
+            $error = "Magic has failed to spell!";
         }
     }
 }
@@ -47,26 +46,29 @@ if (isset($_POST["submit"])) {
                             <a href="./show-courses.php" class="btn btn-outline-primary">Back</a>
                         </div>
                     </div>
+
                     <div class="row">
                         <div class="col-12">
                             <div class="card">
                                 <div class="card-body">
-                                    <?php require_once('./includes/flash-messages.php') ?>
-                                    <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']) ?>" method="POST">
+                                    <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
+
+                                    <?php require_once('./includes/flash-messages.php'); ?>
+
                                         <div class="mb-3">
-                                            <label for="name">Course name</label>
-                                            <input type="text" class="form-control" name="name" value="<?php echo $name ?>" id="name" placeholder="Enter course name!">
-                                            
+                                            <label for="name" class="form-label">Name</label>
+                                            <input type="text" class="form-control" name="name" id="name" value="<?php echo $name; ?>" placeholder="Enter course name!">
                                         </div>
 
                                         <div class="mb-3">
-                                            <label for="duration">Course Duration</label>
-                                            <input type="text" class="form-control" value="<?php echo $duration ?>" name="duration" id="duration" placeholder="Enter course duration!">
+                                            <label for="duration" class="form-label">Duration</label>
+                                            <input type="text" class="form-control" name="duration" id="duration" value="<?php echo $duration; ?>" placeholder="Enter course duration!">
                                         </div>
 
                                         <div>
-                                            <input type="submit" name="submit" value="Submit" class="btn btn-primary">
+                                            <input type="submit" value="Submit" class="btn btn-primary" name="submit">
                                         </div>
+
                                     </form>
                                 </div>
                             </div>
